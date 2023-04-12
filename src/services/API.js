@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const { BASE_URL } = 'https://6436fb728205915d3401eb87.mockapi.io/api/v1/';
+const { BASE_URL } = 'https://6436fb728205915d3401eb87.mockapi.io';
 
 async function fetchData(pathParams) {
   const axiosInstance = axios.create({
