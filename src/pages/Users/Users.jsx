@@ -1,7 +1,9 @@
 
-export const Users = () => {
+const Users = () => {
 
     return (
-<p>home</p>
+<p>users</p>
     )
 }
+
+export default Users;

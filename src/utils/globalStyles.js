@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
    'Montserrat Regular', 'Montserrat Medium', sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
-   background-color: ${baseColor.colors.white};
+   background-color: ${baseColor.colors.mainBG};
  }
  body.scroll {
   max-height: 100vh;
@@ -29,6 +29,10 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     height: auto;
  }
+a{
+display:block;
+text-decoration: none;
+}
 #popup-root {
     z-index: 45;
     width: 100vw;

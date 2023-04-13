@@ -1,23 +1,17 @@
-import { AppBar } from '../AppBar/AppBar';
-// import { Header, Name } from './Layout.styled';
-// import { Main } from 'components/Main/Main';
-// import { Footer } from 'components/Footer/Footer';
-
-
+import { AppBar } from "../AppBar/AppBar";
+import { Main } from "../Main/Main";
+import { Footer } from "../Footer/Footer";
 
 export const Layout = () => {
-
-
   return (
-    <div>
-        <div>
-          {/* <Name></Name>
-          <Header> */}
-            <AppBar />
-          {/* </Header> */}
-          {/* <Main /> */}
-        </div>
-        {/* <Footer/> */}
-    </div>
+    <>
+      <>
+        <header>
+          <AppBar />
+        </header>
+        <Main />
+      </>
+      <Footer />
+    </>
   );
 };

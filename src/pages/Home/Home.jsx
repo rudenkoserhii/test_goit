@@ -1,11 +1,13 @@
-// import { ReactComponent as Img } from "../../components/logo512.png";
+import image from "../../components/logo512.png";
+import {ImgStyled} from './Home.styled';
 
-export const Home = () => {
+const Home = () => {
 
     return (
 <>
-{/* <Img/> */}
-<p>home</p>
+<ImgStyled src={image} alt="Logo"/>
 </>
     )
 }
+
+export default Home;
