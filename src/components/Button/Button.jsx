@@ -3,7 +3,7 @@ import { ButtonStyled, TextStyled } from './Button.styled';
 export const Button = ({text}) => {
 
     return (
-        <ButtonStyled className={'btn'} > 
+        <ButtonStyled type='button' className={'btn'} > 
             <TextStyled>{text}
             </TextStyled>
         </ButtonStyled>
