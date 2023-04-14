@@ -16,6 +16,15 @@ cursor: pointer;
   box-shadow: ${baseColor.shadows.button};
   border-radius: 10px;
 
+
+  &.btn__card, &.btn__loadMore {
+margin-right: auto;
+margin-left: auto;
+  }
+
+  &.btn__card:hover, &.btn__loadMore:hover  {
+    background: ${baseColor.colors.buttonActive};
+  }
 `;
 
 export const TextStyled = styled.span`
@@ -28,4 +37,4 @@ line-height: 1.222;
 text-transform: uppercase;
 
 color: ${baseColor.colors.textDark};
-  }`;
+  `;

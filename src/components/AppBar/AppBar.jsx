@@ -7,10 +7,10 @@ export const AppBar = () => {
         <Wrap> 
             <ListStyled>
                 <ListItem key="Home">
-                    <NavLinkStyled to={'/'} title="Home page"><Button text={'Home'}></Button></NavLinkStyled>
+                    <NavLinkStyled to={'/'} title="Home page"><Button text={'Home'} place={'btn__nav'}></Button></NavLinkStyled>
                 </ListItem>
                 <ListItem key="Tweets">
-                    <NavLinkStyled to={'tweets'} title="Tweets"><Button text={'Tweets'}></Button></NavLinkStyled>
+                    <NavLinkStyled to={'tweets'} title="Tweets"><Button text={'Tweets'} place={'btn__nav'}></Button></NavLinkStyled>
                 </ListItem>
             </ListStyled>
         </Wrap>

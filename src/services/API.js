@@ -12,4 +12,16 @@ async function fetchData(pathParams) {
   return await axiosInstance.get();
 }
 
-export { fetchData };
+async function patchUser(pathParams, body) {
+
+  const axiosInstance = axios.create({
+    baseURL: `${BASE_URL}${pathParams}`,
+    headers: { 'Content-Type': 'application/json' },
+    body,
+  });
+
+  return await axiosInstance.patch();
+}
+
+
+export { fetchData, patchUser };
