@@ -7,7 +7,7 @@ import { GlobalStyle } from "./utils/globalStyles";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-    <BrowserRouter basename="/">
+    <BrowserRouter basename="/test_goit/">
       <GlobalStyle />
       <App />
     </BrowserRouter>
