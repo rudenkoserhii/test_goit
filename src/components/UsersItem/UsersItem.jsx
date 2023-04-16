@@ -16,8 +16,7 @@ import ellipse from "../../assets/images/ellipse.png";
 import { Button } from "../Button/Button";
 import { useState, useEffect } from "react";
 import { patchUser } from "../../services/API";
-// import { onLoading, onLoaded } from "../../helpers/Loader/Loader";
-// import Notiflix from "notiflix";
+import Notiflix from "notiflix";
 
 let body = {};
 export const UsersItem = ({
@@ -26,41 +25,38 @@ export const UsersItem = ({
   followers,
   tweets,
   avatar,
-  followValue,
+  follow,
 }) => {
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [error, setError] = useState(null);
-  const [follow, setFollow] = useState(followValue);
+  const [followNew, setFollowNew] = useState(follow);
+const [followersNew, setFollowersNew] = useState(followers);
+const [currentId, setCurrentId] = useState(null);
 
   function onClick(arg) {
-    if(arg === "btn__loadMore") {
-console.log('click')
-setFollow(!follow);
-    body.followers = follow ? followers - 1 : followers + 1;
-    body.follow = follow;
-console.log(body)
+console.log(arg)
+    if(arg === "card") {
 console.log(id)
-}
+setCurrentId(id);
+setFollowNew(!followNew);
+setFollowersNew(prev => followNew ? prev - 1 : prev + 1);
+// patch()
+} else return;
 
   }
+//     function patch() {async () => {
+//       try {
+//         await patchUser(`/api/v1/users/${currentId}`, body);
+//       } catch (error) {
+//         setError(error);
+//       } finally {
+//         setIsLoading(false);
+//       }}
+//     };
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       await patchUser(`/api/v1/users/${id}`, body);
-  //     } catch (error) {
-  //       setError(error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   })();
-  // }, []);
+//   useEffect(() => {
+// patch()
+//   },[]);
 
   return (
-    <>
-      {/* {isLoading ? onLoading() : onLoaded()}
-      {error && Notiflix.Notify.warning("Whoops, something went wrong")} */}
-
       <UsersItemStyled key={id}>
         <Logo />
         <Picture src={picture} alt="displays" />
@@ -75,7 +71,7 @@ console.log(id)
         </Tweets>
         <Followers>
           <span>
-            {followers
+            {followersNew
               .toString()
               .split("")
               .reverse()
@@ -87,11 +83,10 @@ console.log(id)
         </Followers>
         <Button
           place={"btn__card"}
-          text={"follow"}
+          text={!followNew ? "follow" : "following"}
           onClick={onClick}
-          active={follow ? "active" : "passive"}
+          active={followNew ? "active" : "passive"}
         />
       </UsersItemStyled>
-    </>
   );
 };

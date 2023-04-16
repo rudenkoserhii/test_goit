@@ -15,7 +15,7 @@ const Users = () => {
   const limit = 8;
 
   function onClick(arg) {
-    arg === "btn__loadMore" && setPage(page + 1);
+    arg === "loadMore" && setPage(page + 1);
   }
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Users = () => {
             <Button
               text={"load more"}
               place={"btn__loadMore"}
-              onClick={() => onClick}
+              onClick={onClick}
             />
           )}
         </>

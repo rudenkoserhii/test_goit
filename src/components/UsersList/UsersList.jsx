@@ -6,7 +6,7 @@ export const UsersList = ({ users }) => {
   return (
     <UsersListStyled>
       {users.map((user) => (
-        <UsersItem key={user.id} name={user.user} followers={user.followers} tweets={user.tweets} avatar={user.avatar} followValue={user.follow}/>
+        <UsersItem key={user.id} name={user.user} followers={user.followers} tweets={user.tweets} avatar={user.avatar} follow={user.follow} id={user.id}/>
       ))}
     </UsersListStyled>
   );

@@ -17,10 +17,12 @@ async function patchUser(pathParams, body) {
   const axiosInstance = axios.create({
     baseURL: `${BASE_URL}${pathParams}`,
     headers: { 'Content-Type': 'application/json' },
-    body,
+    body: JSON.stringify(body),
   });
 
-  return await axiosInstance.patch();
+console.log(axiosInstance)
+
+  return await axiosInstance.put();
 }
 
 
