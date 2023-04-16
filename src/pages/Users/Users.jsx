@@ -6,8 +6,7 @@ import Notiflix from "notiflix";
 import { onLoading, onLoaded } from "../../helpers/Loader/Loader";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Filter } from "../../components/Filter/Filter";
-import {Wrapper} from './Users.styled';
-
+import { Wrapper } from "./Users.styled";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -15,28 +14,28 @@ const Users = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
-const [searchParams, setSearchParams] = useSearchParams();
-  const [search, setSearch] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState('show_all');
 
-function filter(value) {
-console.log(value)
-if (value === 'follow') {
-setUsers([]);
-setPage(1);
-setSearch(false);
-setSearchParams({'follow': false});
-} else if (value === 'followings') {
-setUsers([]);
-setPage(1);
-setSearch(true);
-setSearchParams({'follow': true});
-} if (value === 'show_all') {
-setUsers([]);
-setPage(1);
-setSearch(null);
-searchParams.delete('follow');
-}
-}
+  function filter(value) {
+setValue(value)
+    if (value === "follow") {
+      setSearchParams({ follow: false });
+      setUsers([]);
+      setPage(1);
+    } else if (value === "followings") {
+setValue(value)
+      setUsers([]);
+      setPage(1);
+      setSearchParams({ follow: true });
+    }
+    else if (value === "show_all") {
+setValue(value)
+      setUsers([]);
+      setPage(1);
+      searchParams.delete("follow");
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -46,13 +45,16 @@ searchParams.delete('follow');
     arg === "loadMore" && setPage(page + 1);
     arg === "back" && navigate("/");
   }
-
-// const url = search === null ? `/api/v1/users?page=${page}&limit=${limit}` : ({`/api/v1/users?page=${page}&limit=${limit}`, &follow=${search}});
-
+searchParams.entries()
   useEffect(() => {
     (async () => {
       try {
-        const { data } = search === null ? await fetchData(`/api/v1/users?page=${page}&limit=${limit}`) : await fetchData(`/api/v1/users?page=${page}&limit=${limit}&${searchParams}`);
+        const { data } =
+          searchParams === null
+            ? await fetchData(`/api/v1/users?page=${page}&limit=${limit}`)
+            : await fetchData(
+                `/api/v1/users?page=${page}&limit=${limit}&${searchParams}`
+              );
         setData(data);
         setUsers((prev) => [...prev, ...data]);
         if (!data) {
@@ -64,7 +66,7 @@ searchParams.delete('follow');
         setIsLoading(false);
       }
     })();
-  }, [page, search, searchParams]);
+  }, [page, searchParams]);
 
   return (
     <>
@@ -73,8 +75,10 @@ searchParams.delete('follow');
 
       {users?.length > 0 && !error && (
         <>
-          <Wrapper><Button text={"back"} place={"btn__back"} onClick={onClick} />
-<Filter filter={filter} /></Wrapper>
+          <Wrapper>
+            <Button text={"back"} place={"btn__back"} onClick={onClick} />
+            <Filter filter={filter} value={value} />
+          </Wrapper>
 
           <UsersList users={users} />
           {(data?.length !== 0 || data?.length === limit) && (
