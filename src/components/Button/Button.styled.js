@@ -17,12 +17,12 @@ cursor: pointer;
   border-radius: 10px;
 
 
-  &.btn__card, &.btn__loadMore {
+  &.btn__card, &.btn__loadMore, &.btn__back {
 margin-right: auto;
 margin-left: auto;
   }
 
-  &.btn__card:hover, &.btn__loadMore:hover  {
+  &.btn__card:hover, &.btn__loadMore:hover, &.btn__back:hover  {
     background: ${baseColor.colors.buttonActive};
   }
 `;

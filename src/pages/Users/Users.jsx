@@ -4,6 +4,7 @@ import { Button } from "../../components/Button/Button";
 import { fetchData } from "../../services/API";
 import Notiflix from "notiflix";
 import { onLoading, onLoaded } from "../../helpers/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -12,10 +13,13 @@ const Users = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
 
+  const navigate = useNavigate();
+
   const limit = 8;
 
   function onClick(arg) {
     arg === "loadMore" && setPage(page + 1);
+    arg === "back" && navigate("/");
   }
 
   useEffect(() => {
@@ -44,7 +48,8 @@ const Users = () => {
 
       {users?.length > 0 && !error && (
         <>
-          <UsersList users={users}/>
+          <Button text={"back"} place={"btn__back"} onClick={onClick} />
+          <UsersList users={users} />
           {(data?.length !== 0 || data?.length === limit) && (
             <Button
               text={"load more"}

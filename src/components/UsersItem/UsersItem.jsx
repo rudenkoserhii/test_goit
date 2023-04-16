@@ -19,74 +19,73 @@ import { patchUser } from "../../services/API";
 import Notiflix from "notiflix";
 
 let body = {};
-export const UsersItem = ({
-  id,
-  name,
-  followers,
-  tweets,
-  avatar,
-  follow,
-}) => {
+export const UsersItem = ({ id, name, followers, tweets, avatar, follow }) => {
   const [followNew, setFollowNew] = useState(follow);
-const [followersNew, setFollowersNew] = useState(followers);
-const [currentId, setCurrentId] = useState(null);
+  const [followersNew, setFollowersNew] = useState(followers);
+  const [currentId, setCurrentId] = useState(null);
 
-  function onClick(arg) {
-console.log(arg)
-    if(arg === "card") {
-console.log(id)
-setCurrentId(id);
-setFollowNew(!followNew);
-setFollowersNew(prev => followNew ? prev - 1 : prev + 1);
-// patch()
-} else return;
-
+  function onClick(arg, clickedId) {
+    if (arg === "card") {
+      setCurrentId(clickedId);
+      setFollowNew(!followNew);
+      setFollowersNew((prev) => (followNew ? prev - 1 : prev + 1));
+      const obj = {};
+      obj.id = currentId;
+      obj.follow = followNew;
+      obj.followers = followersNew;
+      return obj;
+    } else return;
   }
-//     function patch() {async () => {
-//       try {
-//         await patchUser(`/api/v1/users/${currentId}`, body);
-//       } catch (error) {
-//         setError(error);
-//       } finally {
-//         setIsLoading(false);
-//       }}
-//     };
 
-//   useEffect(() => {
-// patch()
-//   },[]);
+  useEffect(() => {
+    if (currentId !== null) {
+      body.follow = followNew;
+      body.followers = followersNew;
+
+      (async () => {
+        try {
+          const { data } = await patchUser(`/api/v1/users/${currentId}`, body);
+          if (!data) {
+            return Notiflix.Notify.warning("Whoops, something went wrong 404");
+          }
+        } catch (error) {
+          Notiflix.Notify.warning(error.message);
+        }
+      })();
+    }
+  }, [currentId, followNew, followersNew]);
 
   return (
-      <UsersItemStyled key={id}>
-        <Logo />
-        <Picture src={picture} alt="displays" />
-        <Line />
-        <Circle />
-        <CircleBorder src={ellipse} alt="circle" />
-        <Avatar src={avatar ? avatar : defaultAvatar} alt="avatar" />
-        <Name className="name">{name}</Name>
-        <Tweets>
-          <span>{tweets}</span>
-          <span>tweets</span>
-        </Tweets>
-        <Followers>
-          <span>
-            {followersNew
-              .toString()
-              .split("")
-              .reverse()
-              .map((e, i) => ((i + 1) % 3 === 0 ? `,${e}` : e))
-              .reverse()
-              .join("")}
-          </span>
-          <span>followers</span>
-        </Followers>
-        <Button
-          place={"btn__card"}
-          text={!followNew ? "follow" : "following"}
-          onClick={onClick}
-          active={followNew ? "active" : "passive"}
-        />
-      </UsersItemStyled>
+    <UsersItemStyled key={id} id={id}>
+      <Logo />
+      <Picture src={picture} alt="displays" />
+      <Line />
+      <Circle />
+      <CircleBorder src={ellipse} alt="circle" />
+      <Avatar src={avatar ? avatar : defaultAvatar} alt="avatar" />
+      <Name className="name">{name}</Name>
+      <Tweets>
+        <span>{tweets}</span>
+        <span>tweets</span>
+      </Tweets>
+      <Followers>
+        <span>
+          {followersNew
+            .toString()
+            .split("")
+            .reverse()
+            .map((e, i) => ((i + 1) % 3 === 0 ? `,${e}` : e))
+            .reverse()
+            .join("")}
+        </span>
+        <span>followers</span>
+      </Followers>
+      <Button
+        place={"btn__card"}
+        text={!followNew ? "follow" : "following"}
+        onClick={onClick}
+        active={followNew ? "active" : "passive"}
+      />
+    </UsersItemStyled>
   );
 };

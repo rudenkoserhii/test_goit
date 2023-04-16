@@ -12,7 +12,8 @@ export const Button = ({ text, place, onClick, active }) => {
       onClick={(e) => {
         e.currentTarget.classList.contains("btn__loadMore") &&
           onClick("loadMore");
-        e.currentTarget.classList.contains("btn__card") && onClick("card");
+        e.currentTarget.classList.contains("btn__card") && onClick("card", e.currentTarget.parentNode.id);
+        e.currentTarget.classList.contains("btn__back") && onClick("back");
       }}
     >
       <TextStyled>{text}</TextStyled>

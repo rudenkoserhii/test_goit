@@ -1,5 +1,5 @@
 import { Wrap, NavLinkStyled, ListItem, ListStyled } from './AppBar.styled';
-import { Button } from '../Button/Button'
+import { Button } from '../Button/Button';
 
 export const AppBar = () => {
 
