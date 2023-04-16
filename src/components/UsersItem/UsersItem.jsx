@@ -65,7 +65,15 @@ export const UsersItem = ({ id, name, followers, tweets, avatar, follow }) => {
       <Avatar src={avatar ? avatar : defaultAvatar} alt="avatar" />
       <Name className="name">{name}</Name>
       <Tweets>
-        <span>{tweets}</span>
+        <span>
+          {tweets
+            .toString()
+            .split("")
+            .reverse()
+            .map((e, i) => ((i + 1) % 3 === 0 ? `,${e}` : e))
+            .reverse()
+            .join("")}
+        </span>
         <span>tweets</span>
       </Tweets>
       <Followers>

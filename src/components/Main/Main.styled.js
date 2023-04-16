@@ -6,4 +6,6 @@ padding-bottom: 48px;
 `;
 
 export const MainStyled = styled.main`
+
+min-height: calc(100vh - 222px);
 `;

@@ -17,7 +17,7 @@ cursor: pointer;
   border-radius: 10px;
 
 
-  &.btn__card, &.btn__loadMore, &.btn__back {
+  &.btn__card, &.btn__loadMore {
 margin-right: auto;
 margin-left: auto;
   }

@@ -4,7 +4,10 @@ import { Button } from "../../components/Button/Button";
 import { fetchData } from "../../services/API";
 import Notiflix from "notiflix";
 import { onLoading, onLoaded } from "../../helpers/Loader/Loader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Filter } from "../../components/Filter/Filter";
+import {Wrapper} from './Users.styled';
+
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -12,6 +15,28 @@ const Users = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
+const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(null);
+
+function filter(value) {
+console.log(value)
+if (value === 'follow') {
+setUsers([]);
+setPage(1);
+setSearch(false);
+setSearchParams({'follow': false});
+} else if (value === 'followings') {
+setUsers([]);
+setPage(1);
+setSearch(true);
+setSearchParams({'follow': true});
+} if (value === 'show_all') {
+setUsers([]);
+setPage(1);
+setSearch(null);
+searchParams.delete('follow');
+}
+}
 
   const navigate = useNavigate();
 
@@ -22,12 +47,12 @@ const Users = () => {
     arg === "back" && navigate("/");
   }
 
+// const url = search === null ? `/api/v1/users?page=${page}&limit=${limit}` : ({`/api/v1/users?page=${page}&limit=${limit}`, &follow=${search}});
+
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await fetchData(
-          `/api/v1/users?page=${page}&limit=${limit}`
-        );
+        const { data } = search === null ? await fetchData(`/api/v1/users?page=${page}&limit=${limit}`) : await fetchData(`/api/v1/users?page=${page}&limit=${limit}&${searchParams}`);
         setData(data);
         setUsers((prev) => [...prev, ...data]);
         if (!data) {
@@ -39,7 +64,7 @@ const Users = () => {
         setIsLoading(false);
       }
     })();
-  }, [page]);
+  }, [page, search, searchParams]);
 
   return (
     <>
@@ -48,7 +73,9 @@ const Users = () => {
 
       {users?.length > 0 && !error && (
         <>
-          <Button text={"back"} place={"btn__back"} onClick={onClick} />
+          <Wrapper><Button text={"back"} place={"btn__back"} onClick={onClick} />
+<Filter filter={filter} /></Wrapper>
+
           <UsersList users={users} />
           {(data?.length !== 0 || data?.length === limit) && (
             <Button
