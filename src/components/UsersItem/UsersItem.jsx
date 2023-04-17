@@ -2,8 +2,6 @@ import {
   UsersItemStyled,
   Logo,
   Picture,
-  Line,
-  Circle,
   CircleBorder,
   Avatar,
   Name,
@@ -59,8 +57,6 @@ export const UsersItem = ({ id, name, followers, tweets, avatar, follow }) => {
     <UsersItemStyled key={id} id={id}>
       <Logo />
       <Picture src={picture} alt="displays" />
-      <Line />
-      <Circle />
       <CircleBorder src={ellipse} alt="circle" />
       <Avatar src={avatar ? avatar : defaultAvatar} alt="avatar" />
       <Name className="name">{name}</Name>

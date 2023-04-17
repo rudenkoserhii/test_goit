@@ -10,31 +10,38 @@ export const ButtonStyled = styled.button`
   width: 196px;
   height: 50px;
 
-cursor: pointer;
+  cursor: pointer;
+  border: none;
 
   background: ${baseColor.colors.buttonPassive};
   box-shadow: ${baseColor.shadows.button};
   border-radius: 10px;
 
-
-  &.btn__card, &.btn__loadMore {
-margin-right: auto;
-margin-left: auto;
+  &.btn__card,
+  &.btn__loadMore {
+    margin-right: auto;
+    margin-left: auto;
   }
 
-  &.btn__card:hover, &.btn__loadMore:hover, &.btn__back:hover  {
+  &.btn__loadMore {
+    margin-bottom: 48px;
+  }
+
+  &.btn__card:hover,
+  &.btn__loadMore:hover,
+  &.btn__back:hover {
     background: ${baseColor.colors.buttonActive};
   }
 `;
 
 export const TextStyled = styled.span`
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 1.222;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.222;
 
-text-transform: uppercase;
+  text-transform: uppercase;
 
-color: ${baseColor.colors.textDark};
-  `;
+  color: ${baseColor.colors.textDark};
+`;

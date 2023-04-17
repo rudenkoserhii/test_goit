@@ -1,4 +1,4 @@
-import image from "../../components/logo512.png";
+import image from "../../assets/images/logo512.png";
 import {ImgStyled} from './Home.styled';
 
 const Home = () => {
