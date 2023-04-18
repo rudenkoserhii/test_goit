@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { baseColor } from './variables';
+import { createGlobalStyle } from "styled-components";
+import { baseColor } from "./variables";
 
 export const GlobalStyle = createGlobalStyle`
  body{
@@ -10,6 +10,10 @@ export const GlobalStyle = createGlobalStyle`
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    background-color: ${baseColor.colors.mainBG};
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+&::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
  }
  body.scroll {
   max-height: 100vh;
