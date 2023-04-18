@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import image from "../../assets/images/logo512.png";
 
 const entrance = keyframes`
     0% {
@@ -17,11 +18,13 @@ const entrance = keyframes`
     }
   `;
 
-export const ImgStyled = styled.img`
-  height: calc(100vh - 222px);
+export const Div = styled.div`
+  background-image: url(${image});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: calc(100vh - 222px), calc(100vh - 222px);
 
-  margin-right: auto;
-  margin-left: auto;
+  height: calc(100vh - 222px);
 
   animation: ${entrance} 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
 `;

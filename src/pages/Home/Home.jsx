@@ -1,13 +1,7 @@
-import image from "../../assets/images/logo512.png";
-import {ImgStyled} from './Home.styled';
+import { Div } from "./Home.styled";
 
 const Home = () => {
-
-    return (
-<>
-<ImgStyled src={image} alt="Logo"/>
-</>
-    )
-}
+  return <Div />;
+};
 
 export default Home;
