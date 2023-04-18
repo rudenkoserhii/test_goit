@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { baseColor } from "../../utils/variables";
 
+export const Option = styled.option`
+`;
+
 export const Select = styled.select`
 
   padding-left: 10px;
@@ -31,4 +34,3 @@ export const Select = styled.select`
   }
 `;
 
-export const Option = styled.option``;
