@@ -38,10 +38,10 @@ const Users = () => {
       setPage(1);
       setSearchParams({ follow: true });
     } else if (value === "show_all") {
+      searchParams.delete("follow");
       setValue(value);
       setUsers([]);
       setPage(1);
-      searchParams.delete("follow");
     }
   }
 
