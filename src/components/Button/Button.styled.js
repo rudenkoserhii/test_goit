@@ -27,10 +27,8 @@ export const ButtonStyled = styled.button`
     margin-bottom: 48px;
   }
 
-  &.btn__card:hover,
-  &.btn__loadMore:hover,
-  &.btn__back:hover {
-    background: ${baseColor.colors.buttonActive};
+  &:hover {
+    outline: 3px solid ${baseColor.colors.buttonActive};
   }
 `;
 

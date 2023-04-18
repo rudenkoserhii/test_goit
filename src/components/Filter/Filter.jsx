@@ -9,7 +9,7 @@ export const Filter = ({ filter, value }) => {
       value={value}
     >
       {["show_all", "follow", "followings"].map((option) => (
-        <Option value={option} disabled={option === value ? true : null}>
+        <Option key={option} value={option} disabled={option === value ? true : null}>
           {option}
         </Option>
       ))}

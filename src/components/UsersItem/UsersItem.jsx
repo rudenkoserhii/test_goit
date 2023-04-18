@@ -17,7 +17,7 @@ import Notiflix from "notiflix";
 import { separateComa } from "../../utils/separateComa";
 
 let body = {};
-export const UsersItem = ({ id, name, followers, tweets, avatar, follow, updateDate }) => {
+export const UsersItem = ({ id, name, followers, tweets, avatar, follow, updateData }) => {
   const [followNew, setFollowNew] = useState(follow);
   const [followersNew, setFollowersNew] = useState(followers);
   const [currentId, setCurrentId] = useState(null);
@@ -46,13 +46,13 @@ export const UsersItem = ({ id, name, followers, tweets, avatar, follow, updateD
           if (!data) {
             return Notiflix.Notify.warning("Whoops, something went wrong 404");
           }
-          updateDate();
+          updateData();
         } catch (error) {
           Notiflix.Notify.warning(error.message);
         }
       })();
     }
-  }, [currentId, followNew, followersNew, updateDate]);
+  }, [currentId, followNew, followersNew, updateData]);
 
   return (
     <UsersItemStyled key={id} id={id}>

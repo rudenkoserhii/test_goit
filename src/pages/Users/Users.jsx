@@ -18,7 +18,7 @@ const Users = () => {
   const [value, setValue] = useState("show_all");
   const [reload, setReload] = useState(false);
 
-  function updateDate() {
+  function updateData() {
     if (value !== "show_all") {
       setUsers([]);
       setPage(1);
@@ -63,11 +63,11 @@ const Users = () => {
     async function fetchUsers() {
       try {
         const { data } = await fetchData(url);
-        setData(data);
-        setUsers((prev) => [...prev, ...data]);
         if (!data) {
           return Notiflix.Notify.warning("Whoops, something went wrong 404");
         }
+        setData(data);
+        setUsers((prev) => [...prev, ...data]);
       } catch (error) {
         setError(error);
       } finally {
@@ -89,7 +89,7 @@ const Users = () => {
             <Filter filter={filter} value={value} />
           </Wrapper>
 
-          <UsersList users={users} updateDate={updateDate} />
+          <UsersList users={users} updateData={updateData} />
           {(data?.length !== 0 || data?.length === limit) && (
             <Button
               text={"load more"}

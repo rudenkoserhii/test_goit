@@ -25,6 +25,10 @@ export const Select = styled.select`
   text-transform: uppercase;
 
   color: ${baseColor.colors.textDark};
+
+  &:hover {
+    outline: 3px solid ${baseColor.colors.buttonActive};
+  }
 `;
 
 export const Option = styled.option``;
