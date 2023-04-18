@@ -10,7 +10,6 @@ import {
 } from "./UsersItem.styled";
 import picture from "../../assets/images/card_picture.png";
 import defaultAvatar from "../../assets/images/default_photo.png";
-import ellipse from "../../assets/images/ellipse.png";
 import { Button } from "../Button/Button";
 import { useState, useEffect } from "react";
 import { patchUser } from "../../services/API";
@@ -57,7 +56,7 @@ export const UsersItem = ({ id, name, followers, tweets, avatar, follow }) => {
     <UsersItemStyled key={id} id={id}>
       <Logo />
       <Picture src={picture} alt="displays" />
-      <CircleBorder src={ellipse} alt="circle" />
+      <CircleBorder/>
       <Avatar src={avatar ? avatar : defaultAvatar} alt="avatar" />
       <Name className="name">{name}</Name>
       <Tweets>

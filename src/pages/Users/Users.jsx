@@ -15,22 +15,21 @@ const Users = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [value, setValue] = useState('show_all');
+  const [value, setValue] = useState("show_all");
 
   function filter(value) {
-setValue(value)
     if (value === "follow") {
+      setValue(value);
       setSearchParams({ follow: false });
       setUsers([]);
       setPage(1);
     } else if (value === "followings") {
-setValue(value)
+      setValue(value);
       setUsers([]);
       setPage(1);
       setSearchParams({ follow: true });
-    }
-    else if (value === "show_all") {
-setValue(value)
+    } else if (value === "show_all") {
+      setValue(value);
       setUsers([]);
       setPage(1);
       searchParams.delete("follow");
@@ -45,7 +44,7 @@ setValue(value)
     arg === "loadMore" && setPage(page + 1);
     arg === "back" && navigate("/");
   }
-searchParams.entries()
+  searchParams.entries();
   useEffect(() => {
     (async () => {
       try {
