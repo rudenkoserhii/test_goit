@@ -44,16 +44,16 @@ const Users = () => {
     arg === "loadMore" && setPage(page + 1);
     arg === "back" && navigate("/");
   }
-  searchParams.entries();
+
+  const url =
+    value === "show_all"
+      ? `/api/v1/users?page=${page}&limit=${limit}`
+      : `/api/v1/users?page=${page}&limit=${limit}&${searchParams}`;
+
   useEffect(() => {
-    (async () => {
+    async function fetchUsers() {
       try {
-        const { data } =
-          searchParams === null
-            ? await fetchData(`/api/v1/users?page=${page}&limit=${limit}`)
-            : await fetchData(
-                `/api/v1/users?page=${page}&limit=${limit}&${searchParams}`
-              );
+        const { data } = await fetchData(url);
         setData(data);
         setUsers((prev) => [...prev, ...data]);
         if (!data) {
@@ -64,8 +64,9 @@ const Users = () => {
       } finally {
         setIsLoading(false);
       }
-    })();
-  }, [page, searchParams]);
+    }
+    fetchUsers();
+  }, [url]);
 
   return (
     <>

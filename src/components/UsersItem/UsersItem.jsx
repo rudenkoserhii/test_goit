@@ -14,6 +14,7 @@ import { Button } from "../Button/Button";
 import { useState, useEffect } from "react";
 import { patchUser } from "../../services/API";
 import Notiflix from "notiflix";
+import { separateComa } from "../../utils/separateComa";
 
 let body = {};
 export const UsersItem = ({ id, name, followers, tweets, avatar, follow }) => {
@@ -61,25 +62,13 @@ export const UsersItem = ({ id, name, followers, tweets, avatar, follow }) => {
       <Name className="name">{name}</Name>
       <Tweets>
         <span>
-          {tweets
-            .toString()
-            .split("")
-            .reverse()
-            .map((e, i) => ((i + 1) % 3 === 0 ? `,${e}` : e))
-            .reverse()
-            .join("")}
+          {separateComa(tweets)}
         </span>
         <span>tweets</span>
       </Tweets>
       <Followers>
         <span>
-          {followersNew
-            .toString()
-            .split("")
-            .reverse()
-            .map((e, i) => ((i + 1) % 3 === 0 ? `,${e}` : e))
-            .reverse()
-            .join("")}
+          {separateComa(followersNew)}
         </span>
         <span>followers</span>
       </Followers>

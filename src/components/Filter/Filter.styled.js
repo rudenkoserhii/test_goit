@@ -3,7 +3,7 @@ import { baseColor } from "../../utils/variables";
 
 export const Select = styled.select`
 
-  padding-left: 28px;
+  padding-left: 10px;
   padding-right: 28px;
 
 
