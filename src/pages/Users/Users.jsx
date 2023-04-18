@@ -16,6 +16,15 @@ const Users = () => {
   const [data, setData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [value, setValue] = useState("show_all");
+  const [reload, setReload] = useState(false);
+
+  function updateDate() {
+    if (value !== "show_all") {
+      setUsers([]);
+      setPage(1);
+      setReload(!reload);
+    }
+  }
 
   function filter(value) {
     if (value === "follow") {
@@ -66,7 +75,7 @@ const Users = () => {
       }
     }
     fetchUsers();
-  }, [url]);
+  }, [reload, url]);
 
   return (
     <>
@@ -80,7 +89,7 @@ const Users = () => {
             <Filter filter={filter} value={value} />
           </Wrapper>
 
-          <UsersList users={users} />
+          <UsersList users={users} updateDate={updateDate} />
           {(data?.length !== 0 || data?.length === limit) && (
             <Button
               text={"load more"}
