@@ -39,6 +39,7 @@ const Users = () => {
       setSearchParams({ follow: true });
     } else if (value === "show_all") {
       searchParams.delete("follow");
+      setSearchParams(searchParams);
       setValue(value);
       setUsers([]);
       setPage(1);
@@ -81,16 +82,14 @@ const Users = () => {
     <>
       {isLoading ? onLoading() : onLoaded()}
       {error && Notiflix.Notify.warning("Whoops, something went wrong")}
-
-      {users?.length > 0 && !error && (
-        <>
           <Wrapper>
             <Button text={"back"} place={"btn__back"} onClick={onClick} />
             <Filter filter={filter} value={value} />
           </Wrapper>
-
+      {users?.length > 0 && !error && (
+        <>
           <UsersList users={users} updateData={updateData} />
-          {(data?.length !== 0 || data?.length === limit) && (
+          {(data?.length !== 0 && data?.length === limit) && (
             <Button
               text={"load more"}
               place={"btn__loadMore"}
